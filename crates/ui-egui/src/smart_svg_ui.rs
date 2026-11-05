@@ -14,7 +14,7 @@ const MAX_SVG_BYTES: usize = 16 * 1024 * 1024;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 enum Editor {
-    NOVA Vektör,
+    VectorCraft,
     Illustrator,
     Program,
     Internal,
@@ -124,7 +124,7 @@ pub(crate) fn intercept(app: &mut PhotocraftApp, id: &str, params: &Value) -> Op
         let contents_id = exported.get("contentsId").filter(|v| !v.is_null()).cloned().ok_or("The Smart Object identity is missing")?;
         app.smart_svg.pending = Some(Pending {
             target: Target { doc, layer, contents_id, fingerprint, svg: Arc::new(svg), extension, size },
-            editor: Editor::NOVA Vektör,
+            editor: Editor::VectorCraft,
             program: None,
         });
         Ok(json!({"deferred": true}))
@@ -187,7 +187,7 @@ fn confirm(app: &mut PhotocraftApp) -> Result<Value, String> {
         return Err("Close a document or stop an SVG editor session before starting another (limit: 8)".into());
     }
     let editor = match pending.editor {
-        Editor::NOVA Vektör => ExternalSvgEditor::NOVA Vektör,
+        Editor::VectorCraft => ExternalSvgEditor::VectorCraft,
         Editor::Illustrator => ExternalSvgEditor::Illustrator,
         Editor::Program => ExternalSvgEditor::Program(pending.program.ok_or("Choose an editor executable first")?),
         Editor::Internal => return Err("Invalid SVG editor choice".into()),
@@ -281,7 +281,7 @@ pub(crate) fn show(app: &mut PhotocraftApp, ctx: &egui::Context) {
             ));
         }
         for (choice, label) in [
-            (Editor::NOVA Vektör, "NOVA Vektör"),
+            (Editor::VectorCraft, "NOVA Vektör"),
             (Editor::Illustrator, "Adobe Illustrator"),
             (Editor::Program, "Other application"),
             (Editor::Internal, "NOVA Foto (internal editor)"),

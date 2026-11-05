@@ -23,7 +23,7 @@ fn main() {
     res.set_icon("../../assets/app-icon/photocraft.ico")
         .set("ProductName", "NOVA Foto")
         .set("FileDescription", "NOVA Foto image editor")
-        .set("CompanyName", "Samet Sahin")
+        .set("CompanyName", "Learning Machines LLC")
         .set("LegalCopyright", "Copyright (c) the NOVA Foto authors. MIT OR Apache-2.0.")
         .set("OriginalFilename", "photocraft.exe")
         .set("InternalName", "photocraft");
