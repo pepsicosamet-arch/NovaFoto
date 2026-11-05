@@ -1,0 +1,9 @@
+NOVA Foto portable mode
+
+While this file sits next to photocraft.exe, NOVA Foto keeps its preferences, brush presets,
+crash-recovery autosaves and startup state in the NovaFotoData folder beside it, and writes
+nothing to %APPDATA% or %LOCALAPPDATA%. Copy the whole folder to move NOVA Foto with its settings.
+
+Delete this file to use the normal per-user folders instead: %APPDATA%\Photocraft for settings
+and %LOCALAPPDATA%\Photocraft\Recovery for crash-recovery autosaves. If NovaFotoData can't be
+written (for example on a read-only drive), NOVA Foto says so and uses those folders instead.
